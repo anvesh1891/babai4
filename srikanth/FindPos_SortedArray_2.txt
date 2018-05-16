@@ -1,0 +1,34 @@
+
+
+class Test
+{
+
+	static int findPosition(int arr[],int left, int right, int val) 
+	{
+      int mid = (left+right-1)/2;
+      
+      if (val == arr[mid] ) {
+          return mid;
+      }
+      else if (val > arr[mid]) {
+          return findPosition(arr, mid+1, right, val);
+      }
+      else {
+          return findPosition(arr, left, mid-1, val);
+      }
+      return mid;
+	}
+
+	
+	public static void main(String[] args) 
+	{
+		int arr[] = new int[]{1,3,5,7,9};
+		int mid = 0, left = 0, right =arr.length-1;
+		int input = 5;
+		int position = findPosition(arr,left,right,input);
+	/*	if (position == -1) {
+		    position = arr.length;
+		}*/
+		System.out.println(position);
+	}
+}
