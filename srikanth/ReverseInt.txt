@@ -1,0 +1,28 @@
+
+class Test 
+{
+	public static int reverse(int n)
+	{
+       int reverse = 0;
+       int count = 0;
+		while (count < 32) 
+		{
+		  int lastbit = n&1;
+		  System.out.println("lastbit :"+lastbit);
+		  n = n>>1;
+          
+          reverse = reverse^lastbit;
+		  reverse = reverse<<1;   
+		  System.out.println(reverse);
+		 count++;
+		}
+		return reverse;
+	}
+
+	public static void main(String[] args)
+	{
+		int n = 65536;
+		System.out.println(reverse(n));
+	}
+}
+
