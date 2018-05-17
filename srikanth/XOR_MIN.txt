@@ -1,0 +1,10 @@
+int FindMinXOR(int arr[])
+{ // **** Sort array*******
+    int XOR_Min = Integer.MAX_VALUE;
+		
+	for (int i = 0; i < arr.length - 1; i++) {
+     	int xor = arr[i] ^ arr[i + 1];
+		XOR_Min = Math.min(XOR_Min, xor);
+	}
+	return XOR_Min;
+}
