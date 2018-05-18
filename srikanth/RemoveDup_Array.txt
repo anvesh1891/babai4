@@ -1,0 +1,34 @@
+
+class Test
+{
+	static int removeDuplicates(int arr[])
+	{
+	    int newLen = 1;
+	    if (arr.length ==1 ) {
+	       return newLen;    
+	    }
+	    
+	    for (int i=0, j= i+1; j < arr.length; j++) 
+	    {
+	        if (arr[i]<arr[j]) 
+	        {
+	           i++; 
+	        }
+	     
+	        if (arr[i] !=arr[j]) {
+	          arr[i] = arr[j];   
+	        }
+	        newLen = i+1;
+	    }
+	    return newLen;
+	}
+	
+	public static void main (String[] args) 
+	{
+		int arr[] = {1,1,1,1,2,2,3,4,5,6,7,7,7};
+	    int newArrLength = removeDuplicates(arr);
+
+		for (int i=0; i<newArrLength; i++)
+		System.out.print(arr[i]+" ");
+	}
+}
