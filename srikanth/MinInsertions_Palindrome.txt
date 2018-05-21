@@ -1,0 +1,52 @@
+
+import java.util.*;
+class Test
+{
+	
+	static int FindPalindromeMidPos(String str)
+	{
+	    int palindromeMid =0;
+	    char strArr[] = new char[str.length()];
+	    strArr = str.toCharArray();
+	    boolean palindromePosFound = false;
+	    for (int i=0; i <str.length()/2;i++) 
+	    {
+	        if (strArr[i] == strArr[i+2] || strArr[i] == strArr[i+2]) {
+	            int q;
+	            if (strArr[i] == strArr[i+2]) {
+	                q = i+2;
+	            }
+	            else {
+	                q = i+1;
+	            }
+	            boolean palindrome = true;
+	            for (int p =i; p>=0; p--,q++) {
+	                if (strArr[p] != strArr[q]) {
+	                    palindrome = false;
+	                    palindromeMid = 0;
+	                    break;
+	                }
+	            }
+	            if (palindrome) {
+	             System.out.println("palindrome mid point is at :"+(i+1));
+	             palindromeMid = i+1;
+	             palindromePosFound = true;
+	            }
+	        }
+	        if (palindromePosFound)
+	          break;
+	    }
+	    return palindromeMid;
+
+	}
+	
+	public static void main(String[] args) 
+	{
+	    String str = "AABCDE"; //"ADAM"; //"BCACFCACBGH";
+	    int mid = FindPalindromeMidPos(str);
+	    String remaining = str.substring(mid+mid+1,str.length());
+	    String reverse = new StringBuffer(remaining).reverse().toString();
+	    String palindrome = reverse.concat(str);
+	    System.out.println ( " Palindrome string is : "+palindrome);
+	}
+}
