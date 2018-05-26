@@ -1,0 +1,48 @@
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int[] slidingMaximum(final int[] A, int B) {
+        List<Integer> ret = new ArrayList<Integer>();
+        
+        Deque<Integer> Q = new LinkedList<Integer>();
+        int i =0;
+        //int j =0;
+        //first window -- find max
+        for ( i =0 ; i< B; i++) {
+          while (!Q.isEmpty() && A[i]>=A[Q.peekLast()])
+               //remove 
+               Q.removeLast();
+          
+          Q.addLast(i);    
+        }
+        
+        // insert first window max into B
+       // ret[j++] = A[Q.peek()];
+        
+        while (i < A.length) {
+            
+            // add to return array
+            ret.add(A[Q.peek()]);
+            
+            //remove previous window elements
+            while(!Q.isEmpty() && Q.peek() <= i-B) {
+                Q.removeFirst();
+            }
+            
+            //repeat the process
+            while (!Q.isEmpty() && A[i] >= A[Q.peekLast()])
+                Q.removeLast();
+            Q.addLast(i);
+            
+            i++;
+        }
+        //add last element
+        ret.add(A[Q.peek()]);
+        
+        int [] arr = new int[ret.size()];
+        int j =0;
+        for (int p : ret) 
+          arr[j++] = p;
+		
+        return arr;
+    }
+}
