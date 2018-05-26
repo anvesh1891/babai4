@@ -1,0 +1,43 @@
+
+import java.util.ArrayList;
+
+class FindPowerOfSubString
+{
+	public static void main(String[] args)
+	{
+	  
+	  String str =  "adithya"; //"geeksforgeeks";
+	  int power = 2; //36;
+	  String subStr = findSubString(str, power);
+	  System.out.println(subStr);
+	}
+	
+	static String findSubString(String str, int power) 
+	{
+	    int currentPower = 0;
+	    int subStringStart = 0 , subStringEnd =0;
+	    
+	    for (int i =0 ; i< str.length(); i++)
+	    {
+	         int currentCharVal = str.charAt(i) - 'a'+1;
+	         currentPower += currentCharVal ;
+	         
+	         if( currentPower > power) {
+	             while (currentPower > power) 
+	             {
+	               currentPower = currentPower - (str.charAt(subStringStart) - 'a' +1);
+	               subStringStart++;
+	             }
+	         }
+	         if (currentPower == power) {
+	             subStringEnd = i;
+	             break;
+	         }
+	    }
+	    if (subStringEnd == 0) {
+	        return "Not Found";
+	    }
+	    else 
+	        return str.substring(subStringStart, subStringEnd+1);
+	}
+}
