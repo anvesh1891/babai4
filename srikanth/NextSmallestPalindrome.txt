@@ -1,0 +1,95 @@
+
+
+public class Test 
+{
+	static void printNextSmallestPalindrome(int num[]) 
+	{
+	    boolean allNines = true;
+	    for (int p =0 ; p< num.length; p++) {
+	        if (num[p] != 9) {
+	            allNines = false;
+	            break;
+	        }
+	    } 
+	    
+	    if (allNines) {
+	       System.out.println("1");
+	       for (int k =0; k< num.length; k++)
+	         System.out.println(" 0");
+	       System.out.println(" 1");
+	       return;
+	    }
+	    
+	    
+	    int mid = num.length/2;
+	    int i,j;
+	    
+	    if (num.length %2 == 0) {
+	        i = mid -1;
+	        j = mid;
+	    }
+	    else {
+	        i = mid;
+	        j = mid;
+	    }
+	    
+	    while (i >= 0 && num[i] == num[j])
+	    {
+	        i--;
+	        j++;
+	    }
+	    
+	    // check for leftSmall or not
+	    boolean leftIsSmall = false;
+	    
+	    if (i < 0 || num[i] < num[j]) {
+	        leftIsSmall = true;
+	    }
+	   
+	    while (i >= 0) {
+	        // copy left to right
+	        num[j++] = num[i--];
+	    }
+	   
+	  
+	    if (leftIsSmall) 
+	    { 
+	      // input is palindrome or left is small
+	      // increment mid and pass carry to left 
+	      // copy left to right
+	      int carry = 1;
+	      if (num.length%2 == 1 ) {
+	        num[mid]++;
+	        carry = num[mid]/10;
+	        num[mid] %= 10;
+	      }
+	      if (num.length%2 == 0)
+	      {
+	          i = mid-1;
+	          j = mid;
+	      }
+	      else {
+	          i = mid-1;
+	          j = mid+1;
+	      }
+	     
+	      while (i >= 0) 
+		  {
+		 	num[i] = num[i] + carry;
+			carry = num[i] / 10;
+			num[i] %= 10;
+			num[j++] = num[i--];
+		  }
+	    }
+	    
+	    
+	    for (int x =0 ; x<num.length; x++)
+	       System.out.println(" "+num[x]);
+  	}
+
+	public static void main(String[] args) 
+	{
+		int num[] = { 1,2,4,6,5,7,2,1 };
+		printNextSmallestPalindrome(num);
+	}
+}
