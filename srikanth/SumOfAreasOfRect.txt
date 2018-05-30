@@ -1,0 +1,54 @@
+
+import java.util.*;
+
+public class Test 
+{
+	static void sumOfAreasOfRect(int input[]) 
+	{
+	   Arrays.sort(input);
+
+	   int firstNum = 0, secondNum = 0;
+  	   int i = input.length-1;
+       int sum = 0;
+  	   
+  	   boolean firstFound= false;
+  	   boolean secondFound = false;
+  	   
+  	   while ( i > 0) 
+  	   {
+  	     // find first number
+  	     if ((input[i] == input [i-1]) || (input[i] - input[i-1] == 1) ) 
+  	     {
+  	         if (!firstFound) {
+  	            firstNum = input[i-1];
+  	            System.out.println("First Num: " + firstNum);
+  	            firstFound = true;
+  	         }
+  	         else {
+  	            secondNum = input[i-1];
+  	            secondFound = true;
+  	            System.out.println("Second Num : " + secondNum);
+  	         }
+  	         i-=2;
+  	     }
+  	     else 
+  	     {
+  	         i--;
+  	     }
+  	     
+  	     if ( firstFound && secondFound ) 
+  	     {
+  	         sum += (firstNum * secondNum);
+  	         firstFound = false;
+  	         secondFound = false;
+  	     }
+  	   }
+	   System.out.println("Area is : "+sum);
+	}
+
+	public static void main(String[] args) 
+	{
+		int input[] = { 7,5,6,3,2,7,9,1 };
+		sumOfAreasOfRect(input);
+	}
+}
