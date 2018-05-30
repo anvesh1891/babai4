@@ -1,0 +1,36 @@
+
+public class Test 
+{
+	static void FindElementInMatrix(int inputMatrix[][], int x, int row, int col) 
+	{
+	    int i =0, j= row -1;
+	    
+	    while ( i < col && j >=0 )
+	    {
+	        if (inputMatrix[i][j] == x) 
+	        {
+	          System.out.println("Element found at row : "+i +" col : "+ j);
+	          return;
+	        }
+	        if ( inputMatrix[i][j] > x) {
+	            // move left
+	            j--;
+	        }
+	        else { //if (inputMatrix[i][j] < x) {
+	            // move down
+	            i++;
+	        }
+	    }
+	    // not found
+	    System.out.println("element not found");
+        
+	}
+
+	public static void main(String[] args) 
+	{
+		int inputMatrix[][] = {{3, 30, 38 }, {44 ,  52, 54 }, {57, 60, 69}};
+		int x = 58;
+		
+		FindElementInMatrix(inputMatrix , x, 3, 3);
+	}
+}
