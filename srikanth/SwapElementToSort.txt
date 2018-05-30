@@ -1,0 +1,40 @@
+
+public class Test 
+{
+	static void findMaxElementToSort(int almostSort[] , int elementArray[]) 
+	{
+	   int minBound = 0, maxBound =0;
+	   int swapElement = -1; // what if this element exists in array 
+	                         // and it is element to be swapped??
+	    
+	   for (int k = 0; k < almostSort.length ; k++) 
+	   {
+	       if (almostSort[k] > almostSort[k+1]) {;
+	           minBound = almostSort[k];
+	           maxBound = almostSort[k+2];
+	          // System.out.println("minBound "+ minBound );
+	          // System.out.println("maxBound "+ maxBound );
+	           break;
+	       }
+	   }
+	   
+	   for (int e=0 ; e < elementArray.length; e++) {
+	       if (elementArray[e] > minBound && elementArray[e] < maxBound) {
+	           if (elementArray[e] > swapElement)
+	             swapElement = elementArray[e]; 
+	       }
+	   }
+	   
+	   if (swapElement != -1)
+    	   System.out.println("element to be swapped is : "+swapElement);
+       else
+    	   System.out.println("Swap is not possible");
+	}
+
+	public static void main(String[] args) 
+	{
+		int almostSort[] =  {20,1,23} ; //{ 1,3,7,4,10 };
+		int elementArray [] = {50,26,7} ; //{ 2,1,5,8,9 };
+		findMaxElementToSort(almostSort, elementArray);
+	}
+}
