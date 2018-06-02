@@ -1,0 +1,63 @@
+
+class Test
+{
+	static boolean isBSTBalanced(int a[], int b[])
+	{
+	  boolean isbalanced = false;
+	  int minVal = -1; // only 4 test
+	  int maxVal = 2222; // only 4 test
+	  isbalanced = checkSubIsBalanced (a, b, 0, 0 ,minVal, maxVal);
+	  return isbalanced;
+	}
+	
+	static boolean checkSubIsBalanced (int a[], int b[], int start1, int start2, int minVal, int maxVal) 
+	{
+	    int i,j;
+	    
+	    for ( i= start1; i< a.length; i++) 
+	    {
+	        if (a[i] > minVal && a[i] < maxVal) {
+	       // System.out.println("i "+a[i]);
+	         break;
+	        }
+	    }
+	    
+	    for ( j= start2; j < b.length; j++) 
+	    {
+	        if (b[j] > minVal && b[j] < maxVal) {
+	       // System.out.println("j "+b[j]);
+	         break;
+	        }
+	    }
+	    
+	    
+	    if ( i == a.length && j == b.length ) {
+	     // System.out.println("leaf");
+	      return true;
+	    }
+	      
+	    if (a[i] != b[j])
+	      return false;
+	      
+	    if ( (j==b.length && i!=a.length) || (i ==a.length && j!=b.length) )
+	    {
+	        return false;
+	    }
+	    
+	    return checkSubIsBalanced (a, b, i+1, j+1, minVal, a[i]) &&
+	           checkSubIsBalanced (a, b, i+1, j+1, a[i], maxVal);
+	    
+	}
+
+	public static void main(String args[])
+	{
+		int a[] = new int[]{2,1,4,3};
+		int b[] = new int[]{2,4,3,1};
+	    boolean isBalanced = isBSTBalanced(a,b);
+	    
+	    if (isBalanced)
+	      System.out.println("Trees are identical");
+	    else 
+	       System.out.println("Trees are not identical");
+	} 
+}
