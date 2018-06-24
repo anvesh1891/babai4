@@ -1,0 +1,61 @@
+public class Solution {
+    public String[] prettyJSON(String A) {
+        
+        ArrayList<String> result = new ArrayList<String>();
+        String currentString = "";
+        String space ="";
+
+        for(int i =0; i < A.length(); i++)
+        {
+            char current = A.charAt(i);
+            switch(current)
+            {
+                case '{' : 
+                case '[' : 
+                           if (currentString !="") 
+                             result.add(space+currentString);
+                           
+                           result.add(space+current);
+                           space += "\t"; // add a tab
+                           currentString = "";
+                           break;
+                           
+                case '}' :
+                case ']' :
+                           if (currentString !="")
+                             result.add(space+currentString);
+                           
+                           //reduce one tab
+                           space = space.substring(0,space.length()-1);
+                           result.add(space+current);
+                           currentString = "";
+                           break;
+                           
+                case ',' : 
+                            if (currentString !="") 
+                            {
+                              currentString += current;
+                              result.add(space+currentString);
+                            }
+                            else { // means closing was happend. So, append to preious
+                             String lastOne = result.get(result.size()-1);
+                              result.remove(result.size()-1);
+                              lastOne += ",";
+                              currentString = lastOne;
+                              result.add(currentString);
+                            }
+                      
+                            currentString = "";
+                            break;
+                           
+                default :  if (current != ' ')
+                            currentString += current;
+                            break;    
+            }
+        }
+        
+        String ret [] = new String[result.size()];
+         ret = result.toArray(ret);
+        return ret;
+    }
+}
